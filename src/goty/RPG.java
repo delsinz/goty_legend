@@ -1,10 +1,10 @@
 /* 433-294 Object Oriented Software Development
- * game.RPG Game Engine
+ * goty.RPG Game Engine
  * Author: Matt Giuca <mgiuca>
  * Modified by: Mingyang Zhang (Delsin)
  */
 
-package game;
+package goty;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
@@ -13,24 +13,25 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-import world.World;
-
 /** Main class for the Role-Playing Game engine.
  * Handles initialisation, input and rendering.
  */
 public final class RPG extends BasicGame
 {
-    private World world;
-
     /** Screen width, in pixels. */
     public static final int SCREEN_WIDTH = 800;
     /** Screen height, in pixels. */
     public static final int SCREEN_HEIGHT = 600;
 
-    /** Create a new game.RPG object. */
+    public static final int PANEL_HEIGHT = 70;
+
+    private World world;
+    private Timer attackTimer;
+    
+    /** Create a new goty.RPG object. */
     public RPG()
     {
-        super("game.RPG Game Engine");
+        super("goty.RPG Game Engine");
     }
 
     /** Initialise the game state.
@@ -55,21 +56,27 @@ public final class RPG extends BasicGame
         Input input = gc.getInput();
 
         // Update the player's movement direction based on keyboard presses.
-        int dir_x = 0;
-        int dir_y = 0;
+        int dirX = 0;
+        int dirY = 0;
+        int attack = 0;
+        int talk = 0;
         if (input.isKeyDown(Input.KEY_DOWN))
-            dir_y = 1;
+            dirY = 1;
         if (input.isKeyDown(Input.KEY_UP))
-            dir_y = -1;
+            dirY = -1;
         if (input.isKeyDown(Input.KEY_LEFT))
-            dir_x = -1;
+            dirX = -1;
         if (input.isKeyDown(Input.KEY_RIGHT))
-            dir_x = +1;
+            dirX = 1;
+        if(input.isKeyPressed(Input.KEY_A))
+            attack = 1;
+        if(input.isKeyPressed(Input.KEY_T))
+            talk = 1;
         if(input.isKeyPressed(Input.KEY_ESCAPE))
             gc.exit();
 
-        // Let world.World.update decide what to do with this data.
-        world.update(dir_x, dir_y, delta);
+        // Let goty.World.update decide what to do with this data.
+        world.update(dirX, dirY, attack, talk, delta);
     }
 
     /** Render the entire screen, so it reflects the current game state.

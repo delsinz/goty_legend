@@ -1,10 +1,10 @@
 /* SWEN20003 Object Oriented Software Development
- * game.RPG Game Engine
+ * goty.RPG Game Engine
  * Author: Mingyang Zhang (Delsin)
  * Login: mingyangz
  */
 
-package world;
+package goty;
 
 import org.newdawn.slick.SlickException;
 
@@ -64,10 +64,10 @@ public final class Camera
         this.mapHeight = mapHeight;
     }
 
-    protected void update(double playerX, double playerY, int delta)
+    protected void update(double targetX, double targetY, int delta)
     throws SlickException
     {
-        this.follow(playerX, playerY, delta);
+        this.follow(targetX, targetY, delta);
     }
 
     private void follow(double targetX, double targetY, int delta)

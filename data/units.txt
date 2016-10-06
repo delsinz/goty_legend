@@ -1,21 +1,21 @@
 Unit Data File
 ==============
 
-This text file contains tabular data about each unit in the game. You may use
+This text file contains tabular data about each goty.unit in the game. You may use
 this data in any way you wish in the source code of your program. It is
 provided so that you don't have to work out the exact attributes and
-placements of each unit.
+placements of each goty.unit.
 
-There are two sections. The "general unit data" section contains a table with
-a row for each unit *type*. The "specific unit data" section contains a table
-with a row for each actual unit instance. For example, there are many Zombies
+There are two sections. The "general goty.unit data" section contains a table with
+a row for each goty.unit *type*. The "specific goty.unit data" section contains a table
+with a row for each actual goty.unit instance. For example, there are many Zombies
 in the game -- the general table has one row for "Zombie". The specific table
 has a row for each Zombie featured in the game.
 
-General unit data
+General goty.unit data
 =================
 
-Note that the image file for each unit is in the "assets/units" directory.
+Note that the image file for each goty.unit is in the "assets/units" directory.
 
 Name            Image file      Type        Monster Type    HP      Damage  Cooldown
 ------------------------------------------------------------------------------------
@@ -34,10 +34,10 @@ Draelic         necromancer.png Monster     Aggressive      140     30      400
 * The player's attributes may be affected by items. These are the starting
   attributes.
 
-Specific unit data
+Specific goty.unit data
 ==================
 
-This table shows the starting position of each unit in the game.
+This table shows the starting position of each goty.unit in the game.
 
 General type    Start position (x, y) in pixels
 -----------------------------------------------
