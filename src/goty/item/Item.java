@@ -13,8 +13,13 @@ import org.newdawn.slick.SlickException;
  * Created on 09/24/2016.
  */
 public abstract class Item extends Entity{
-    protected boolean isPickedUp;
-    protected int id;
+    private boolean isPickedUp;
+    private int id;
+
+    protected Item(int id){
+        isPickedUp = false;
+        this.id = id;
+    }
 
     public void render(Graphics g, Camera camera) throws SlickException{
         if(!isPickedUp){

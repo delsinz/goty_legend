@@ -30,6 +30,9 @@ public final class Prince extends FriendlyNpc {
     @Override
     public void onInteraction(Player player){
         pickDialogue(player);
+        if(player.getInventory().contains(ItemManager.ELIXIR_ID)){
+            player.getInventory().remove((Integer) ItemManager.ELIXIR_ID);
+        }
         dialogueTimer.reset();
         dialogueTimer.start();
     }

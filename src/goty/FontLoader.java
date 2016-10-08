@@ -4,8 +4,9 @@
  * Author: Matt Giuca <mgiuca>
  */
 
-import java.io.File;
+package goty;
 
+import java.io.File;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.SlickException;

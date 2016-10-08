@@ -4,7 +4,7 @@ package goty;
  * Author: Delsin Zhang
  * Created on 10/04/2016.
  */
-public class Timer {
+public final class Timer {
     private int limit;
     private int currentTime;
     private boolean triggered;
@@ -31,7 +31,14 @@ public class Timer {
     }
 
     public void reset(){
-        this.currentTime = limit;
+        this.currentTime = this.limit;
+        this.triggered = false;
+        this.isZero = false;
+    }
+
+    public void reset(int limit){
+        this.limit = limit;
+        this.currentTime = this.limit;
         this.triggered = false;
         this.isZero = false;
     }
@@ -43,6 +50,10 @@ public class Timer {
 
     public boolean isTriggered(){
         return this.triggered;
+    }
+
+    public int getLimit(){
+        return this.limit;
     }
 
 }

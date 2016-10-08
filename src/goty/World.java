@@ -25,6 +25,8 @@ public final class World {
 
     private PassiveNpcManager passiveNpcManager = new PassiveNpcManager();
 
+    private AggressiveNpcManager aggressiveNpcManager = new AggressiveNpcManager();
+
     private ItemManager itemManager = new ItemManager();
 
     private Camera camera = new Camera(player.x, player.y, RPG.SCREEN_WIDTH, RPG.SCREEN_HEIGHT - RPG.PANEL_HEIGHT);
@@ -45,10 +47,6 @@ public final class World {
         return this.player;
     }
 
-    public ItemManager getItemManager(){
-        return this.itemManager;
-    }
-
     /**
      * Update the game state for a frame
      */
@@ -58,6 +56,7 @@ public final class World {
         player.update(dirX, dirY, this, delta);
         friendlyNpcManager.update(talk, this, delta);
         passiveNpcManager.update(attack, this, delta);
+        aggressiveNpcManager.update(attack, this, delta);
         itemManager.update(this, delta);
         camera.update(player.x, player.y, delta);
     }
@@ -73,6 +72,7 @@ public final class World {
         renderMap(g);
         friendlyNpcManager.render(g, camera);
         passiveNpcManager.render(g, camera);
+        aggressiveNpcManager.render(g, camera);
         itemManager.render(g, camera);
         player.render(g, camera);
         renderPanel(g);
@@ -156,13 +156,18 @@ public final class World {
         g.drawString("x: " + player.x + ", y: " + player.y, 50, 65);
         g.drawString("tileX: " + toTileX(player.x) + ", tileY: " + toTileY(player.y), 50, 80);
         player.getImage().draw(50, 95);
+        String items = "";
+        for(Integer itemId : player.getInventory()){
+            items += (itemId+", ");
+        }
+        g.drawString(items, 50, 150);
 
     }
 
     /** Renders the player's status panel. Provided code.
      * @param g The current Slick graphics context.
      */
-    public void renderPanel(Graphics g)
+    public void renderPanel(Graphics g) throws SlickException
     {
         // Panel colours
         Color LABEL = new Color(0.9f, 0.9f, 0.4f);          // Gold
@@ -209,14 +214,14 @@ public final class World {
         g.setColor(LABEL);
         g.drawString("Damage:", text_x, text_y);
         text_x += 80;
-        text = (int)(player.getStats().getDamage())+"";                                    // TODO: Damage
+        text = (int)(player.getStats().getDamage())+"";
         g.setColor(VALUE);
         g.drawString(text, text_x, text_y);
         text_x += 40;
         g.setColor(LABEL);
         g.drawString("Rate:", text_x, text_y);
         text_x += 55;
-        text = player.getStats().getCooldown()+"";                                    // TODO: Cooldown
+        text = player.getStats().getCooldown()+"";
         g.setColor(VALUE);
         g.drawString(text, text_x, text_y);
 
@@ -233,9 +238,10 @@ public final class World {
         inv_x = 490;
         inv_y = RPG.SCREEN_HEIGHT - RPG.PANEL_HEIGHT
                 + ((RPG.PANEL_HEIGHT - 72) / 2);
-        // for (each item in the player's inventory)                // TODO
-        {
+        // for (each item in the player's inventory)
+        for(int itemId : player.getInventory()) {
             // Render the item to (inv_x, inv_y)
+            itemManager.getItemImage(itemId).draw(inv_x, inv_y);
             inv_x += 72;
         }
     }

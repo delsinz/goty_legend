@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Author: Delsin Zhang
  * Created on 10/04/2016.
  */
-public class CSVReader {
+public final class CSVReader {
 
     public static ArrayList<String[]> read(String filePath){
         ArrayList<String[]> entityData = new ArrayList<>();

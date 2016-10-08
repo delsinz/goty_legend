@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Author: Delsin Zhang
  * Created on 10/03/2016.
  */
-public class FriendlyNpcManager {
+public final class FriendlyNpcManager {
 
     private static final String FILE_PATH = "data/friendly.csv";
     private ArrayList<FriendlyNpc> friendlyNpcs = new ArrayList<>();

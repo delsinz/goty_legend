@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Author: Delsin Zhang
  * Created on 10/04/2016.
  */
-public class PassiveNpcManager {
+public final class PassiveNpcManager {
     private static final String FILE_PATH = "data/passive.csv";
     private ArrayList<PassiveNpc> passiveNpcs = new ArrayList<>();
 

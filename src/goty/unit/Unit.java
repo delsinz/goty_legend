@@ -18,12 +18,23 @@ public abstract class Unit extends Entity{
     protected static final double BAR_HEIGHT_OFFSET = 2.5;
     protected static final Color BAR_BLACK = new Color(0.0f, 0.0f, 0.0f, 0.8f);
     protected static final Color BAR_RED = new Color(0.8f, 0.0f, 0.0f, 0.8f);
+    protected static final String ASSET_PATH = "assets/units/";
 
     protected Image leftImg, rightImg;
-    //private double speedX, speedY;
     protected Stats stats;
+    private boolean active;
 
+    protected Unit(){
+        active = true;
+    }
 
+    protected void dropDead(){
+        active = false;
+    }
+
+    protected boolean isActive(){
+        return active;
+    }
 
     private int frictionX(int dirX, World world, int delta) throws SlickException{
         double displaceX = dirX * stats.speedX * delta;

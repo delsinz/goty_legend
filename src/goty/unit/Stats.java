@@ -4,7 +4,7 @@ package goty.unit;
  * Author: Delsin Zhang
  * Created on 09/24/2016.
  */
-public class Stats {
+public final class Stats {
     private double maxHp, hp;
     private double damage;
     private int cooldown;
@@ -50,7 +50,6 @@ public class Stats {
         return this.speedLimit;
     }
 
-    // for debugging
     protected void setHp(double hp){
         this.hp = hp;
     }
