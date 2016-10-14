@@ -17,10 +17,14 @@ public final class Timer {
         this.isZero = false;
     }
 
+    /** Start timer with limit */
     public void start(){
         this.triggered = true;
     }
 
+    /** Update timer
+     * @param delta time passed in current update
+     */
     public void update(int delta){
         if(triggered){
             currentTime -= delta;
@@ -30,12 +34,16 @@ public final class Timer {
         }
     }
 
+    /** Reset timer to limit */
     public void reset(){
         this.currentTime = this.limit;
         this.triggered = false;
         this.isZero = false;
     }
 
+    /** Reset timer with limit
+     * @param limit in milliseconds
+     */
     public void reset(int limit){
         this.limit = limit;
         this.currentTime = this.limit;
@@ -44,15 +52,18 @@ public final class Timer {
     }
 
 
+    /** Return if timer reaches zero */
     public boolean isZero(){
         return this.isZero;
     }
 
+    /** Return if timer is started */
     public boolean isTriggered(){
         return this.triggered;
     }
 
-    public int getLimit(){
+    /** Return limit of timer in milliseconds */
+    protected int getLimit(){
         return this.limit;
     }
 

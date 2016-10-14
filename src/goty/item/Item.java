@@ -35,6 +35,7 @@ public abstract class Item extends Entity{
         }
     }
 
+    /** Apply item's effect to player */
     protected abstract void takeEffect(Player player);
 
 

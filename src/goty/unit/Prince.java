@@ -41,7 +41,7 @@ public final class Prince extends FriendlyNpc {
     @Override
     protected void pickDialogue(Player player){
         if(!player.getInventory().contains(ItemManager.ELIXIR_ID)){
-            this.activeDialogue = "Go get that elixir for me, you beautiful SOB!";
+            this.activeDialogue = "Go get that elixir for me, minion!";
         }else{
             this.activeDialogue = "Ah, the elixir! Now go, I've got no money for you.";
         }

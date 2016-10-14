@@ -14,16 +14,18 @@ import org.newdawn.slick.SlickException;
 public abstract class AggressiveNpc extends Unit {
     private static final double CHASE_DIST = 150;
 
+    /* Timer controlling npc attacks */
     protected Timer attackTimer;
+    /* Npc's current direction of velocity */
     private int dirX, dirY;
+    /* If npc is in chase state */
     private boolean inChase;
-    //private boolean active;
+    /* If attack is enabled for npc */
     private boolean attackEnabled;
 
     protected AggressiveNpc(int cooldown){
         super();
         inChase = true;
-        //active = true;
         attackEnabled = true;
         dirX = 0;
         dirY = 0;
@@ -51,6 +53,7 @@ public abstract class AggressiveNpc extends Unit {
         }
     }
 
+    /** Logic to update npc's speed and direction */
     private void updateVelocity(Unit unit){
         if(inChase){
             this.chase(unit);
@@ -59,6 +62,7 @@ public abstract class AggressiveNpc extends Unit {
         }
     }
 
+    /** Update npc's velocity to enable chase */
     private void chase(Unit unit){
         double speedLimit = this.stats.getSpeedLimit();
         double gapX = this.x - unit.getX();
@@ -69,6 +73,7 @@ public abstract class AggressiveNpc extends Unit {
         this.stats.speedY = speedLimit * Math.abs(gapY)/Math.sqrt(gapX*gapX + gapY*gapY);
     }
 
+    /** Stop moving */
     private void stop(){
         this.dirX = 0;
         this.dirY = 0;
@@ -76,6 +81,7 @@ public abstract class AggressiveNpc extends Unit {
         this.stats.speedY = 0;
     }
 
+    /** Dictate npc's action: attack, chase or stop */
     private void updateAi(int attack, World world){
         Player player = world.getPlayer();
         if(distTo(player)<=COLLISION_DIST){
@@ -91,6 +97,7 @@ public abstract class AggressiveNpc extends Unit {
         }
     }
 
+    /** Initiate attack */
     private void attack(Unit unit){
          if(attackEnabled){
              unit.stats.modifyHp(RPG.RNG.nextDouble() * -this.stats.getDamage());
@@ -99,6 +106,7 @@ public abstract class AggressiveNpc extends Unit {
          }
     }
 
+    /** Update npc's attackEnabled state */
     private void updateAttackController(){
         if(attackTimer.isZero() || !attackTimer.isTriggered()){
             attackEnabled = true;

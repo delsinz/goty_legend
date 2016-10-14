@@ -11,8 +11,11 @@ import org.newdawn.slick.SlickException;
 public abstract class Entity {
     public static final double COLLISION_DIST = 50;
 
+    // World coordinate of entity
     protected double x, y;
+    // Image of entity
     private Image image;
+    // Display name of entity
     protected String name;
 
     protected Image getImage(){
@@ -23,22 +26,21 @@ public abstract class Entity {
         this.image = image;
     }
 
-//    protected void render(Graphics g, Camera camera) throws SlickException{
-//        this.image.drawCentered((float)(x - camera.getX()), (float)(y - camera.getY()));
-//    }
-
-    public abstract void render(Graphics g, Camera camera) throws SlickException;
-
-    protected double distTo(Entity entity){
-        return Math.sqrt(Math.pow((this.x - entity.x), 2) + Math.pow((this.y - entity.y), 2));
-    }
-
     public double getX(){
         return this.x;
     }
 
     public double getY(){
         return this.y;
+    }
+
+    public abstract void render(Graphics g, Camera camera) throws SlickException;
+
+    /**
+     * Compute distance to a given entity
+     */
+    protected double distTo(Entity entity){
+        return Math.sqrt(Math.pow((this.x - entity.x), 2) + Math.pow((this.y - entity.y), 2));
     }
 
 }

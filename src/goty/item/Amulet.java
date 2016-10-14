@@ -17,8 +17,8 @@ public final class Amulet extends Item {
 
     public Amulet(double x, double y) throws SlickException{
         super(ItemManager.AMULET_ID);
-        this.x = 738;
-        this.y = 590;
+        this.x = x;
+        this.y = y;
         this.setImage(new Image(IMAGE_PATH).getScaledCopy(SCALE));
         name = "Amulet of Vitality";
     }

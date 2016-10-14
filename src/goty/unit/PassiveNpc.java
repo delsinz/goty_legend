@@ -12,14 +12,15 @@ import org.newdawn.slick.SlickException;
  * Created on 10/04/2016.
  */
 public abstract class PassiveNpc extends Unit{
+    /* Timers that dictate direction change and flee */
     private Timer dirTimer, fleeTimer;
+    /* Current direction of velocity */
     private int dirX, dirY;
+    /* Whether unit is in underAttack state */
     private boolean underAttack;
-    //private boolean active;
 
     protected PassiveNpc(int dirTime, int fleeTime){
         underAttack = false;
-        //active = true;
 
         dirX = getRandomDir();
         dirY = getRandomDir();
@@ -54,21 +55,27 @@ public abstract class PassiveNpc extends Unit{
     }
 
 
-    protected int getRandomDir(){
+    /** Pick random direction */
+    private int getRandomDir(){
         int[] dirArray = new int[]{-1, 1};
         int rand = RPG.RNG.nextInt(dirArray.length);
         return dirArray[rand];
     }
 
 
+    /** Pick random speed within the speed limit */
     protected double getRandomSpeed(double limit){
         return (RPG.RNG.nextDouble()) * limit;
     }
 
+    /** Compute counterpart speed
+     * eg. compute speedY, given speedX and speed limit
+     */
     protected double getCounterPartSpeed(double limit, double speed){
         return Math.sqrt(limit * limit - speed * speed);
     }
 
+    /** Update npc's move speed and direction */
     private void updateVelocity(Unit unit){
         if(!underAttack && dirTimer.isTriggered() && dirTimer.isZero()){
             this.wander();
@@ -78,6 +85,7 @@ public abstract class PassiveNpc extends Unit{
         }
     }
 
+    /** Npc's behavior in wanderring state */
     private void wander(){
         dirX = getRandomDir();
         dirY = getRandomDir();
@@ -87,6 +95,7 @@ public abstract class PassiveNpc extends Unit{
         dirTimer.start();
     }
 
+    /** Npc runs away from given unit */
     private void fleeFrom(Unit unit){
         double speedLimit = this.stats.getSpeedLimit();
         double gapX = this.x - unit.getX();
@@ -97,6 +106,7 @@ public abstract class PassiveNpc extends Unit{
         this.stats.speedY = speedLimit * Math.abs(gapY)/Math.sqrt(gapX*gapX + gapY*gapY);
     }
 
+    /** Event triggered when attacked */
     private void onBeingAttackedBy(Unit unit){
         underAttack = true;
         dirTimer.reset();
@@ -105,6 +115,7 @@ public abstract class PassiveNpc extends Unit{
         this.stats.modifyHp(RPG.RNG.nextDouble() * -unit.stats.getDamage());
     }
 
+    /** When flee timer reaches zero, i.e. not attacked again within a time frame */
     private void onFleeTimeout(){
         underAttack = false;
         fleeTimer.reset();
@@ -112,6 +123,7 @@ public abstract class PassiveNpc extends Unit{
         dirTimer.start();
     }
 
+    /** Logic that dictates npc's actions: wander or flee from player */
     private void updateAi(int attack, World world){
         if(distTo(world.getPlayer())<=COLLISION_DIST && attack == 1){
             this.onBeingAttackedBy(world.getPlayer());

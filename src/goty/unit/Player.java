@@ -27,8 +27,6 @@ public final class Player extends Unit
 
     private Image panel = new Image(PANEL_PATH);
     private ArrayList<Integer> inventory;
-    private Image spriteSheet;
-    private Animation animation;
 
     public Player() throws SlickException{
         this.x = START_X;
@@ -38,12 +36,6 @@ public final class Player extends Unit
         this.setImage(this.rightImg);
         this.stats = new Stats(HP,DAMAGE, COOLDOWN, SPEED_X, SPEED_Y);
         inventory = new ArrayList<>();
-
-        spriteSheet = new Image("assets/units/delda.png");
-        animation = new Animation(false);
-
-        // TODO: remove debugging code
-        this.stats.setHp(50);
     }
 
     public Image getPanel(){
@@ -67,18 +59,10 @@ public final class Player extends Unit
         this.move(nextX(dirX, world, delta), nextY(dirY, world, delta));
     }
 
-    private Animation getAnimation(Image img){
-        Animation animation = new Animation(false);
-        for(int x = 0; x<8; x++){
-            animation.addFrame(img.getSubImage(x*120, 4*130, 120, 130), 50);
-        }
-        return animation;
-    }
 
     @Override
     public void render(Graphics g, Camera camera) throws SlickException{
-        //this.getImage().drawCentered((float)(x - camera.getX()), (float)(y - camera.getY()));
-        this.animation.draw((float)(x - camera.getX()), (float)(y - camera.getY()));
+        this.getImage().drawCentered((float)(x - camera.getX()), (float)(y - camera.getY()));
     }
 
     protected void heal(){

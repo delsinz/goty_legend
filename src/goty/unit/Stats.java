@@ -5,10 +5,15 @@ package goty.unit;
  * Created on 09/24/2016.
  */
 public final class Stats {
+    /* Max hp and current hp*/
     private double maxHp, hp;
+    /* Max damage unit can deal */
     private double damage;
+    /* Attack cooldown */
     private int cooldown;
+    /* Unit's speed limit, not applied for Player object */
     private double speedLimit;
+    /* Current speed in x, y direction */
     protected double speedX, speedY;
 
     protected Stats(double maxHp, double damage, int cooldown, double speedX, double speedY){
@@ -46,7 +51,7 @@ public final class Stats {
         return this.cooldown;
     }
 
-    public double getSpeedLimit(){
+    protected double getSpeedLimit(){
         return this.speedLimit;
     }
 
@@ -54,6 +59,9 @@ public final class Stats {
         this.hp = hp;
     }
 
+
+
+    /* Modify the corresponding stat by given amount */
 
     protected void modifyMaxHp(double amount){
         this.maxHp += amount;

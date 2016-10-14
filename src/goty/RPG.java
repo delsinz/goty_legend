@@ -122,6 +122,8 @@ public final class RPG extends BasicGame
         app.start();
     }
 
+
+    /** Update player attack control */
     private void updateAttackController(){
         if(world.getPlayer().getStats().getCooldown() != attackTimer.getLimit()){
             attackTimer.reset(world.getPlayer().getStats().getCooldown());

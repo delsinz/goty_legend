@@ -16,8 +16,8 @@ public final class Sword extends Item {
 
     public Sword(double x, double y) throws SlickException{
         super(ItemManager.SWORD_ID);
-        this.x = 660;
-        this.y = 590;
+        this.x = x;
+        this.y = y;
         this.setImage(new Image(IMAGE_PATH).getScaledCopy(SCALE));
         name = "Sword of Strength";
     }

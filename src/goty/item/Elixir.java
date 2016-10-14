@@ -15,8 +15,8 @@ public final class Elixir extends Item {
 
     public Elixir(double x, double y) throws SlickException{
         super(ItemManager.ELIXIR_ID);
-        this.x = 700;
-        this.y = 590;
+        this.x = x;
+        this.y = y;
         this.setImage(new Image(IMAGE_PATH).getScaledCopy(SCALE));
         name = "Elixir of Life";
     }

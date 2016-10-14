@@ -1,7 +1,5 @@
 package goty;
 
-import com.sun.tools.classfile.Code_attribute;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -12,6 +10,9 @@ import java.util.ArrayList;
  */
 public final class CSVReader {
 
+    /**
+     * Read entity data from csv file
+     */
     public static ArrayList<String[]> read(String filePath){
         ArrayList<String[]> entityData = new ArrayList<>();
         BufferedReader reader = null;

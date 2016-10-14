@@ -55,6 +55,9 @@ public final class ItemManager {
         }
     }
 
+    /**
+     * Get image of an item, given item id
+     */
     protected Image getItemImage(int itemId) throws SlickException{
         Image itemImage = null;
         switch (itemId){

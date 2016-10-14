@@ -70,6 +70,9 @@ public final class Camera
         this.follow(targetX, targetY, delta);
     }
 
+    /**
+     * Camera follows an entity
+     */
     private void follow(double targetX, double targetY, int delta)
     throws SlickException
     {

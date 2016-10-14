@@ -13,10 +13,11 @@ import org.newdawn.slick.SlickException;
  */
 public abstract class FriendlyNpc extends Unit {
 
+    /* Display duration for dialogue */
     private static final int DIALOGUE_TIME = 4000;
-
     protected Timer dialogueTimer = new Timer(DIALOGUE_TIME);
 
+    /* Current dialogue to display */
     protected String activeDialogue;
 
     public void update(int talk, World world, int delta){
@@ -54,6 +55,9 @@ public abstract class FriendlyNpc extends Unit {
         }
     }
 
+    /** Trigger event on interaction with npc */
     protected abstract void onInteraction(Player player);
+
+    /** Logic tht dictates what dialogue to display */
     protected abstract void pickDialogue(Player player);
 }

@@ -13,7 +13,7 @@ import org.newdawn.slick.SlickException;
 
 /** This class is provided to reduce the complexity of loading fonts.
  */
-public class FontLoader
+public final class FontLoader
 {
     /** Loads a font from a TTF file.
      * @param ttf_filename Path to a TTF font file to use to draw text.

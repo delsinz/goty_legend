@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Author: Delsin Zhang
  * Created on 10/06/2016.
  */
-public class AggressiveNpcManager {
+public final class AggressiveNpcManager {
     private static final String DATA_PATH = "data/aggressive.csv";
     private ArrayList<AggressiveNpc> aggressiveNpcs = new ArrayList<>();
 
