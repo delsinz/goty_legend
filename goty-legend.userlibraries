@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="jinput">
+    <archive path="/Users/Animus/Code/swen20003/goty-legend/libs/jinput.jar" />
+  </library>
+  <library name="lwjgl">
+    <archive path="/Users/Animus/Code/swen20003/goty-legend/libs/lwjgl.jar" />
+  </library>
+  <library name="slick">
+    <archive path="/Users/Animus/Code/swen20003/goty-legend/libs/slick.jar" />
+  </library>
+</eclipse-userlibraries>
+
